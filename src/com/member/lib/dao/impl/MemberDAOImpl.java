@@ -21,7 +21,7 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = 0;
 		try {
 			con = Connector.open();
-			String sql = "insert into member(m_num, m_name, m_id, m_pwd, m_credat)";
+			String sql = "insert into member(m_num, m_name, m_id, m_pwd, m_joindate)";
 			sql += " values(seq_member_m_num.nextval, ?,?,?,sysdate)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, member.get("m_name").toString());
@@ -119,7 +119,7 @@ public class MemberDAOImpl implements MemberDAO {
 		ResultSet rs = null;
 		try {
 			con = Connector.open();
-			String sql = "select m_num, m_name, m_id, m_pwd, m_credat from member";
+			String sql = "select m_num, m_name, m_id, m_pwd, m_joindate from member";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -128,7 +128,7 @@ public class MemberDAOImpl implements MemberDAO {
 				map.put("m_name", rs.getString("m_name"));
 				map.put("m_id", rs.getString("m_id"));
 				map.put("m_pwd", rs.getString("m_pwd"));
-				map.put("m_credat", rs.getString("m_credat"));
+				map.put("m_joindate", rs.getString("m_joindate"));
 				memberList.add(map);
 			}
 		} catch (Exception e) {
@@ -155,7 +155,7 @@ public class MemberDAOImpl implements MemberDAO {
 		ResultSet rs = null;
 		try {
 			con = Connector.open();
-			String sql = "select m_num, m_name, m_id, m_pwd, m_credat from member where b_num=?";
+			String sql = "select m_num, m_name, m_id, m_pwd, m_joindate from member where m_num=?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, mNum);
 			rs = ps.executeQuery();
@@ -165,7 +165,7 @@ public class MemberDAOImpl implements MemberDAO {
 				map.put("m_name", rs.getString("m_name"));
 				map.put("m_id", rs.getString("m_id"));
 				map.put("m_pwd", rs.getString("m_pwd"));
-				map.put("m_credat", rs.getString("m_credat"));
+				map.put("m_joindate", rs.getString("m_joindate"));
 				return map;
 			}
 		} catch (Exception e) {

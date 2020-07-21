@@ -20,6 +20,7 @@ public class ViewServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		RequestDispatcher rd = request.getRequestDispatcher(PREFIX + uri + SUFIX);
 		rd.forward(request, response);
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

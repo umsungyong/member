@@ -34,6 +34,7 @@ public class Connector {
 		System.out.println("잘됨?");
 		System.out.println(open());
 		
+		
 	}
 }
 

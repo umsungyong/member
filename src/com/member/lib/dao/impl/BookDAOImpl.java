@@ -21,11 +21,11 @@ public class BookDAOImpl implements BookDAO {
 		int result = 0;
 		try {
 			con = Connector.open();
-			String sql = "insert into book(b_num, b_title, b_author, b_credat, b_desc)";
+			String sql = "insert into book(b_num, b_title, b_eser, b_credat, b_desc)";
 			sql += " values(seq_book_b_num.nextval, ?,?,sysdate,?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, book.get("b_title").toString());
-			ps.setString(2, book.get("b_author").toString());
+			ps.setString(2, book.get("b_eser").toString());
 			ps.setString(3, book.get("b_desc").toString());
 			result = ps.executeUpdate();
 			con.commit();
@@ -55,12 +55,12 @@ public class BookDAOImpl implements BookDAO {
 			con = Connector.open();
 			String sql = "update book";
 			sql += " set b_title=?,";
-			sql += " b_author=?,";
+			sql += " b_eser=?,";
 			sql += " b_desc=?";
 			sql += " where b_num=?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, book.get("b_title").toString());
-			ps.setString(2, book.get("b_author").toString());
+			ps.setString(2, book.get("b_eser").toString());
 			ps.setString(3, book.get("b_desc").toString());
 			ps.setInt(4, (int)book.get("b_num"));
 			result = ps.executeUpdate();
@@ -119,14 +119,14 @@ public class BookDAOImpl implements BookDAO {
 		ResultSet rs = null;
 		try {
 			con = Connector.open();
-			String sql = "select b_num, b_title, b_author, b_credat, b_desc from book";
+			String sql = "select b_num, b_title, b_eser, b_credat, b_desc from book";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Map<String, Object> map = new HashMap<>();
 				map.put("b_num", rs.getInt("b_num"));
 				map.put("b_title", rs.getString("b_title"));
-				map.put("b_author", rs.getString("b_author"));
+				map.put("b_eser", rs.getString("b_eser"));
 				map.put("b_credat", rs.getString("b_credat"));
 				map.put("b_desc", rs.getString("b_desc"));
 				bookList.add(map);
@@ -155,7 +155,7 @@ public class BookDAOImpl implements BookDAO {
 		ResultSet rs = null;
 		try {
 			con = Connector.open();
-			String sql = "select b_num, b_title, b_author, b_credat, b_desc from book where b_num=?";
+			String sql = "select b_num, b_title, b_eser, b_credat, b_desc from book where b_num=?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, bNum);
 			rs = ps.executeQuery();
@@ -163,7 +163,7 @@ public class BookDAOImpl implements BookDAO {
 				Map<String, Object> map = new HashMap<>();
 				map.put("b_num", rs.getInt("b_num"));
 				map.put("b_title", rs.getString("b_title"));
-				map.put("b_author", rs.getString("b_author"));
+				map.put("b_eser", rs.getString("b_eser"));
 				map.put("b_credat", rs.getString("b_credat"));
 				map.put("b_desc", rs.getString("b_desc"));
 				return map;
@@ -189,7 +189,7 @@ public class BookDAOImpl implements BookDAO {
 		BookDAO bdao = new BookDAOImpl();
 		Map<String, Object> map = new HashMap<>();
 		map.put("b_title", "자바의정석");
-		map.put("b_author", "남궁성");
+		map.put("b_eser", "남궁성");
 		map.put("b_desc", "광고 오진다.");
 		// bdao.insertBook(map);
 //		List<Map<String, Object>> bookList = bdao.selectBookList(map);
