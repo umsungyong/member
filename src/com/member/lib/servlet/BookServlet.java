@@ -35,7 +35,7 @@ public class BookServlet extends HttpServlet {
 		if ("/book/list".equals(uri)) {
 			List<Map<String, Object>> bookList = bookService.selectBookList(null);
 			request.setAttribute("bookList", bookList);
-			RequestDispatcher rd = request.getRequestDispatcher("/views/book/book-list");
+			RequestDispatcher rd = request.getRequestDispatcher("/views/book/booklist");
 			rd.forward(request, response);
 			return;
 		} else if ("/book/view".equals(uri)) {
@@ -86,6 +86,7 @@ public class BookServlet extends HttpServlet {
 		} else if ("/book/delete".equals(uri)) {
 			int bNum = Integer.parseInt(request.getParameter("b_num"));
 			doProcess(response, bookService.deleteBook(bNum).toString());
+			return;
 		}
 
 	}

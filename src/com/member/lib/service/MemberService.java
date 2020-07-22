@@ -10,6 +10,7 @@ public interface MemberService {
 	Map<String, Object> deleteMember(int mNum);
 	List<Map<String,Object>> selectMemberList(Map<String,Object> member);
 	Map<String,Object> selectMember(int mNum);
+	
 }
 
 

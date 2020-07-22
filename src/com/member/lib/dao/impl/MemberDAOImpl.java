@@ -21,7 +21,7 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = 0;
 		try {
 			con = Connector.open();
-			String sql = "insert into member(m_num, m_name, m_id, m_pwd, m_joindate)";
+			String sql = "insert into member(m_num, m_name, m_id, m_pwd, m_credat)";
 			sql += " values(seq_member_m_num.nextval, ?,?,?,sysdate)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, member.get("m_name").toString());
@@ -128,7 +128,7 @@ public class MemberDAOImpl implements MemberDAO {
 				map.put("m_name", rs.getString("m_name"));
 				map.put("m_id", rs.getString("m_id"));
 				map.put("m_pwd", rs.getString("m_pwd"));
-				map.put("m_joindate", rs.getString("m_joindate"));
+				map.put("m_credat", rs.getString("m_joindate"));
 				memberList.add(map);
 			}
 		} catch (Exception e) {
@@ -165,7 +165,7 @@ public class MemberDAOImpl implements MemberDAO {
 				map.put("m_name", rs.getString("m_name"));
 				map.put("m_id", rs.getString("m_id"));
 				map.put("m_pwd", rs.getString("m_pwd"));
-				map.put("m_joindate", rs.getString("m_joindate"));
+				map.put("m_credat", rs.getString("m_joindate"));
 				return map;
 			}
 		} catch (Exception e) {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="/WEB-INF/views/Common/common.jsp"%>
+    <%@ include file="/WEB-INF/views/common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,7 @@
           <td>${member.m_name}</td>
           <td><a href="/member/view?m_num>${member.m_num}">${member.m_id}</a></td>
           <td>${member.m_pwd}</td>
-          <td>${member.m_joindate}</td>
+          <td>${member.m_credat}</td>
     
     </tr>
 </c:forEach>
